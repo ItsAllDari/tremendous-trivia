@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS <tremendous-trivia>;
-CREATE DATABASE <tremendous-trivia>;
+DROP DATABASE IF EXISTS <tremendous_trivia>;
+CREATE DATABASE <tremendous_trivia>;
