@@ -1,7 +1,9 @@
 from django.contrib import admin
+import nested_admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .models.user import User
+from .models.models import Quiz, Question, Answer, Player, PlayerAnswer
 
 class UserAdmin(BaseUserAdmin):
     ordering = ['id']
@@ -35,7 +37,30 @@ class UserAdmin(BaseUserAdmin):
         }),
     )
 
+class AnswerInline(nested_admin.NestedTabularInline):
+  model = Answer
+  extra = 4
+  max_num = 4
+
+class QuestionInline(nested_admin.NestedTabularInline):
+  model = Question
+  inlines = [AnswerInline,]
+  extra = 5
+
+class QuizAdmin(nested_admin.NestedModelAdmin):
+  inlines = [QuestionInline,]
+
+class PlayerAnswerInline(admin.TabularInline):
+  model = PlayerAnswer
+
+class PlayerAdmin(admin.ModelAdmin):
+  inlines = [PlayerAnswerInline,]
+
 # register the model and tell Django to use the above UserAdmin
 # class to format the pages:
 admin.site.register(User, UserAdmin)
-# admin.site.register(Mango)
+admin.site.register(Quiz)
+admin.site.register(Question)
+admin.site.register(Answer)
+admin.site.register(Player)
+admin.site.register(PlayerAnswer)

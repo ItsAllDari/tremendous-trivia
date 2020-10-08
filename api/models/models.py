@@ -42,7 +42,7 @@ class Player(models.Model):
   timestamp = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):
-    return self.user.username
+    return self.user.email
 
 class PlayerAnswer(models.Model):
   player = models.ForeignKey(Player, on_delete=models.CASCADE)
