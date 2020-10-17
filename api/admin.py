@@ -56,11 +56,11 @@ class PlayerAnswerInline(admin.TabularInline):
 class PlayerAdmin(admin.ModelAdmin):
   inlines = [PlayerAnswerInline,]
 
-# register the model and tell Django to use the above UserAdmin
-# class to format the pages:
+# register the model and tell Django to use the above
+# classes to format the pages:
 admin.site.register(User, UserAdmin)
-admin.site.register(Quiz)
+admin.site.register(Quiz, QuizAdmin)
 admin.site.register(Question)
 admin.site.register(Answer)
-admin.site.register(Player)
+admin.site.register(Player, PlayerAdmin)
 admin.site.register(PlayerAnswer)
